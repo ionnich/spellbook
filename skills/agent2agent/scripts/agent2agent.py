@@ -88,7 +88,7 @@ def _validate_name(name: str) -> None:
 def _validate_session_id(sid: str) -> None:
     if not sid or not _SESSION_ID_RE.match(sid):
         print(
-            f"agent2agent: invalid session id (set CLAUDE_CODE_SESSION_ID)",
+            "agent2agent: invalid session id (set CLAUDE_CODE_SESSION_ID)",
             file=sys.stderr,
         )
         sys.exit(2)

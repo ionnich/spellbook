@@ -12,7 +12,6 @@ Validates that the renamed `hooks/bash-policy.toml` file:
 
 from pathlib import Path
 
-import pytest
 
 
 HOOKS_DIR = Path(__file__).resolve().parents[2] / "hooks"

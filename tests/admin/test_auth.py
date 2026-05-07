@@ -1,6 +1,5 @@
 import time
 
-import pytest
 
 
 class TestExchangeToken:

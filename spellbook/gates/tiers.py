@@ -383,7 +383,6 @@ def _expand_alternations(pattern: str) -> list[str]:
         return []
 
     # Find all alternation groups left-to-right.
-    groups: list[list[str]] = []
     cursor = 0
     fragments: list[list[str]] = []
     for m in _ALTERNATION_RE.finditer(pattern):

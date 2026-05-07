@@ -18,7 +18,6 @@ Tests cover:
   denied path).
 """
 
-import os
 
 import pytest
 
