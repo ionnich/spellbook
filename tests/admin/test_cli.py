@@ -1,11 +1,9 @@
 """CLI command tests for spellbook admin open."""
 
 import json
-import re
 import urllib.error
 import urllib.request
 
-import pytest
 
 from spellbook.admin.cli import admin_open, main
 

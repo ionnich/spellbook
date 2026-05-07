@@ -2,10 +2,8 @@
 
 import os
 import subprocess
-import sys
 
 import bigfoot
-import pytest
 
 from spellbook.daemon.terminal import (
     detect_terminal,

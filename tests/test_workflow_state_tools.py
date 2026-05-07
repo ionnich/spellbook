@@ -15,7 +15,6 @@ import json
 import bigfoot
 import pytest
 from datetime import datetime, timedelta, timezone
-from pathlib import Path
 
 from spellbook.core.db import init_db, get_connection, close_all_connections
 

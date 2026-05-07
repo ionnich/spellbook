@@ -1,7 +1,6 @@
 """Tests for auto-memory bridge hook path matching and content capture."""
 
 import bigfoot
-import pytest
 
 
 class TestIsAutoMemoryPath:
