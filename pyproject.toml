@@ -31,12 +31,17 @@ dev = [
     "pytest-mock>=3.10.0",
     "pytest-timeout>=2.2.0",
     "httpx>=0.25.0",
-    "bigfoot[http]>=0.19.1",
-    "python-tripwire[http]>=0.20.1",
+    "bigfoot>=0.19.1",
+    "python-tripwire>=0.20.1",
+    # python-tripwire renamed from bigfoot and dropped the [http] extra in 0.21+.
+    # `requests` is needed by tripwire.plugins.http (used as bigfoot.http.mock_response
+    # in tests/test_worker_llm/conftest.py).
+    "requests>=2.31",
     "dirty-equals>=0.8.0",
     "fastmcp>=0.4.1",
     "fastapi>=0.115.0",
     "pyyaml>=6.0",
+    "ruff>=0.6.0",
 ]
 docs = [
     "mkdocs>=1.5.0",
@@ -93,3 +98,17 @@ disabled_plugins = ["socket"]
 
 [tool.tripwire.firewall]
 allow = ["socket:*", "database:*", "db:*", "subprocess:*", "http:*", "dns:*"]
+
+[tool.ruff]
+line-length = 100
+# NOTE: target-version follows the code, not requires-python. The codebase
+# uses 3.11 syntax (e.g. `except*` in spellbook/admin/routes/ws.py:88) even
+# though `requires-python = ">=3.10"`. The mismatch is pre-existing and
+# out of scope for the ruff bundling task.
+target-version = "py311"
+extend-exclude = [
+    "spellbook/db/migrations/versions",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
