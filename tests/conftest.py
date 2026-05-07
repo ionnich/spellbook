@@ -152,7 +152,10 @@ def pytest_collection_modifyitems(config, items):
         reason="QMD and Serena required for memory system tests"
     )
     skip_docker = pytest.mark.skip(reason="docker tests only run in CI (use --run-docker)")
+    skip_posix_only = pytest.mark.skip(reason="POSIX only")
+    skip_windows_only = pytest.mark.skip(reason="Windows only")
     run_docker = config.getoption("--run-docker")
+    is_windows = sys.platform.startswith("win")
 
     skipped_memory_count = 0
     for item in items:
@@ -161,6 +164,10 @@ def pytest_collection_modifyitems(config, items):
             skipped_memory_count += 1
         if not run_docker and "docker" in item.keywords:
             item.add_marker(skip_docker)
+        if is_windows and "posix_only" in item.keywords:
+            item.add_marker(skip_posix_only)
+        if not is_windows and "windows_only" in item.keywords:
+            item.add_marker(skip_windows_only)
 
     if skipped_memory_count > 0:
         # Loud warning so the skip is impossible to miss in the terminal
